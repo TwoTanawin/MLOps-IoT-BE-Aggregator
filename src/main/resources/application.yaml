@@ -1,0 +1,20 @@
+spring:
+  application:
+    name : aggregateService
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://47.129.162.126:5433/aggregated_db
+#    url: jdbc:postgresql://aggregated_db:5433/aggregated_db
+    username: admin
+    password: password
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8084

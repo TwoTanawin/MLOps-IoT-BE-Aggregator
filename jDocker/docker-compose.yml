@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  aggregate-service:
+    build:
+      context: ../
+      dockerfile: jDocker/Dockerfile
+    container_name: aggregate-service
+    ports:
+      - "8084:8084"
+    environment:
+      - AWS_PROFILE=mlops          
+      - AWS_REGION=ap-southeast-1  
+      - TZ=Asia/Bangkok
+      - JDK_JAVA_OPTIONS=--add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -Dio.netty.tryReflectionSetAccessible=true
+    volumes:
+      - ~/.aws:/root/.aws:ro    

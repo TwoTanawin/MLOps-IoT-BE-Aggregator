@@ -1,0 +1,35 @@
+services:
+  spark-master:
+    image: bitnami/spark:3.2.1
+    container_name: mlops_spark_master
+    environment:
+      JDK_JAVA_OPTIONS: --add-opens=java.base/sun.nio.ch=ALL-UNNAMED
+      SPARK_MODE: master
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./spark-logs:/spark/logs"
+
+  spark-worker-1:
+    image: bitnami/spark:3.2.1
+    container_name: mlops_spark_worker_1
+    depends_on:
+      - spark-master
+    environment:
+      JDK_JAVA_OPTIONS: --add-opens=java.base/sun.nio.ch=ALL-UNNAMED
+      SPARK_MODE: worker
+      SPARK_MASTER_URL: spark://spark-master:7077
+    volumes:
+      - "./spark-logs:/spark/logs"
+
+  spark-worker-2:
+    image: bitnami/spark:3.2.1
+    container_name: mlops_spark_worker_2
+    depends_on:
+      - spark-master
+    environment:
+      JDK_JAVA_OPTIONS: --add-opens=java.base/sun.nio.ch=ALL-UNNAMED
+      SPARK_MODE: worker
+      SPARK_MASTER_URL: spark://spark-master:7077
+    volumes:
+      - "./spark-logs:/spark/logs"
