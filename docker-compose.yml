@@ -7,7 +7,7 @@ services:
       dockerfile: jDocker/Dockerfile
     container_name: aggregate-service
     ports:
-      - "8084:8084"
+      - "80:80"
     environment:
       - AWS_PROFILE=mlops          
       - AWS_REGION=ap-southeast-1  

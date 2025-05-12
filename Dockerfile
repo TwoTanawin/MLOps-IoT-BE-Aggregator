@@ -29,6 +29,6 @@ ENV JDK_JAVA_OPTIONS="--add-opens=java.base/java.nio=ALL-UNNAMED \
 # Copy the built jar file from the build stage
 COPY --from=build /app/target/aggregateService-0.0.1-SNAPSHOT.jar /app/app.jar
 
-EXPOSE 8084
+EXPOSE 80
 
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
